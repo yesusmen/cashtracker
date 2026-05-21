@@ -17,11 +17,8 @@
                 name="name"
                 value="{{ old('name') }}"
             />
+            <x-input-error field="name" />
         </div>
-        @error('name')
-            <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-        @enderror
-
         <div class="space-y-2">
             <label class="font-bold text-2xl block" for="email">Email</label>
 
@@ -34,9 +31,7 @@
                 autocomplete="nope"
                 value="{{ old('email') }}"
             />
-        @error('email')
-            <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-        @enderror
+            <x-input-error field="email" />
         </div>
 
         <div class="space-y-2">
@@ -49,9 +44,7 @@
                 name="password"
                 autocomplete="new-password"
             />
-        @error('password')
-            <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-        @enderror
+            <x-input-error field="password" />
         </div>
 
         <div class="space-y-2">
@@ -64,9 +57,7 @@
                 name="password_confirmation"
                 autocomplete="new-password"
             />
-        @error('password_confirmation')
-            <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-        @enderror
+            <x-input-error field="password_confirmation" />
         </div>
 
         <input

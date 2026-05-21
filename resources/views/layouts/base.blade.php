@@ -19,20 +19,23 @@
     </head>
     <body>
 
-        @if (Route::has('login'))
-            <header class="bg-purple-950 py-5">
-                <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center lg:justify-between">
-                    <div class="w-full max-w-100">
-                        <img src="{{ asset('img/logo.svg') }}" alt="logo de brand" class="w-full block">
-                    </div>
+        <header class="bg-purple-950 py-5">
+            <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center lg:justify-between">
+                <div class="w-full max-w-100">
+                    <img src="{{ asset('img/logo.svg') }}" alt="logo de brand" class="w-full block">
+                </div>
+                @auth
+                    <pc class="text-white text-xl">Hola : {{ auth()->user()->name }}</pc>
+                @else
+                    @if (Route::has('login'))
                     <nav class="flex flex-col lg:flex-row items-center gap-4">
                         <a href="{{ route('login') }}" class="text-white font-bold uppercase p-2">Iniciar Sesión</a>
                         <a href="{{ route('register') }}" class="text-amber-500 border-2 border-amber-500 font-bold uppercase p-2">Crear Cuenta</a>
                     </nav>
-                </div>
-
-            </header>
-        @endif
+                    @endif
+                @endauth
+            </div>
+        </header>
 
         @yield('contents')
 

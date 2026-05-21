@@ -12,7 +12,15 @@ class LoginRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'email' => 'correo electrónico',
+            'password' => 'contraseña',
+        ];
     }
 
     /**
@@ -23,7 +31,18 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'email' => ['required', 'string', 'email', 'exists:users,email'],
+            'password' => ['required', 'string'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'El campo :attribute es obligatorio.',
+            'email.email' => 'El campo :attribute debe ser una dirección de correo electrónico válida.',
+            'email.exists' => 'No se encontró una cuenta con ese :attribute.',
+            'password.required' => 'El campo :attribute es obligatorio.',
         ];
     }
 }
